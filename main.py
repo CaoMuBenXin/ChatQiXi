@@ -10,7 +10,7 @@ with st.sidebar:
     api_key = st.text_input("请输入OpenAI API Key:")
     st.markdown("[获取OpenAI API Key](https://platform.openai.com/account/api-keys)")
     if not api_key:
-        st.info("没有输入API Key，将使用草木本心的Key (嘤嘤嘤，你真的愿意白嫖我嘛)")
+        st.info("没有输入API Key，将使用草木本心的API Key (嘤嘤嘤，你真的愿意白嫖我嘛)")
 
 if "memory" not in st.session_state:  # 借助streamlit的会话状态，防止下列代码被重新执行(当用户与组件交互时streamlit会从头运行代码)
     st.session_state["template"] = ChatPromptTemplate.from_messages([
@@ -23,7 +23,7 @@ if "memory" not in st.session_state:  # 借助streamlit的会话状态，防止�
         MessagesPlaceholder(variable_name="history"),
         ("human", "{input}")
     ])
-    model = ChatOpenAI(model="gpt-3.5-turbo", openai_api_key=api_key, base_url="https://xiaoai.plus/v1")
+    model = ChatOpenAI(model="gpt-3.5-turbo", openai_api_key="sk-RBzRWiGGnWPtx1FED32b62A3492f424bA178Ea1420328dE0", base_url="https://xiaoai.plus/v1")
     st.session_state["memory"] = ConversationSummaryBufferMemory(return_messages=True, llm=model, max_token_limit=200)
     st.session_state["messages"] = [{  # 存储消息列表
         "role": "ai",
